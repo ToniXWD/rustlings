@@ -1,0 +1,8 @@
+- [ ] `"rust is fun!".to_owned()` 与 `String::from("rust is fun!")` 有什么区别？
+- [ ] `and_modify`
+- [ ] `ref` 关键字的作用是什么？
+- [ ] `map_err` 的作用是什么？
+- [ ] `Chars` 迭代器的作用是什么？
+- [ ] `Split` 迭代器的作用是什么？
+- [ ] `fold` 的作用是什么？
+- [ ] `Cow`

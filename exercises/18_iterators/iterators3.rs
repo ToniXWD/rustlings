@@ -10,22 +10,35 @@ enum DivisionError {
 
 // TODO: Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
 // Otherwise, return a suitable error.
-fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
-    todo!();
+pub fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
+    if b == 0 {
+        return Err(DivisionError::DivideByZero);
+    }
+    if a == i64::MIN && b == -1 {
+        Err(DivisionError::IntegerOverflow)
+    } else if a % b == 0 {
+        let c: i64 = a / b;
+        Ok(c)
+    } else {
+        Err(DivisionError::NotDivisible)
+    }
 }
 
 // TODO: Add the correct return type and complete the function body.
 // Desired output: `Ok([1, 11, 1426, 3])`
-fn result_with_list() {
-    let numbers = [27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+fn result_with_list() -> Result<Vec<i64>, DivisionError> {
+    let numbers = vec![27, 297, 38502, 81];
+    Ok(numbers
+        .into_iter()
+        .map(|n| divide(n, 27).unwrap())
+        .collect())
 }
 
 // TODO: Add the correct return type and complete the function body.
 // Desired output: `[Ok(1), Ok(11), Ok(1426), Ok(3)]`
-fn list_of_results() {
-    let numbers = [27, 297, 38502, 81];
-    let division_results = numbers.into_iter().map(|n| divide(n, 27));
+fn list_of_results() -> Vec<Result<i64, DivisionError>> {
+    let numbers = vec![27, 297, 38502, 81];
+    numbers.into_iter().map(|n| divide(n, 27)).collect()
 }
 
 fn main() {
